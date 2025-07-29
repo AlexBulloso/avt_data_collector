@@ -55,7 +55,7 @@ const Timer = ({
       animFrameID = requestAnimationFrame(tick);
     }
     return () => cancelAnimationFrame(animFrameID);
-  }, [running, focusState, state, start]);
+  }, [running, focusState, state]);
 
   // useEffect(() => {
   //   let interval;
