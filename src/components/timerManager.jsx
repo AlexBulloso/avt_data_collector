@@ -1,4 +1,38 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Timer from "./timer";
+import ClinicGroup from "./clinicGroup";
+
+const InfoDropdown = ({
+  name,
+  dropdownOptions,
+  updateTimeDataLocal,
+  value,
+}) => {
+  const handleChange = (e) => {
+    updateTimeDataLocal(name, e.target.value);
+  };
+  return (
+    <form className="pr-[1rem] pl-[1rem] mt-[0.5rem] mb-[0.5rem]">
+      <h3>{name}</h3>
+      <select
+        className="w-full justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+        value={value || ""}
+        onChange={handleChange}
+      >
+        <option value="" disabled>
+          Choose
+        </option>
+        {dropdownOptions.map((opt) => {
+          return (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          );
+        })}
+      </select>
+    </form>
+  );
+};
 
 const TimerGroup = ({ groupId, updateTimeData }) => {
   const [running, setRunning] = useState(false);
@@ -117,4 +151,84 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
   );
 };
 
-export default TimerGroup;
+const TimerManager = () => {
+  const [allTimeData, setAllTimeData] = useState({});
+  const [clinicData, setClinicData] = useState({
+    specialty: "",
+    subspec: "",
+    obsID: "",
+    clinicCode: "",
+    clinicianID: "",
+  });
+
+  const updateClinicData = (name, value) => {
+    setClinicData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const timeData = useCallback(
+    (patientId, values) => {
+      setAllTimeData((prev) => ({
+        ...prev,
+        [patientId]: { ...clinicData, ...values },
+      }));
+    },
+    [clinicData]
+  );
+
+  const exportCSV = () => {
+    const cols = Array.from(
+      new Set(Object.values(allTimeData).flatMap((g) => Object.keys(g)))
+    );
+
+    var csv = "Patient," + cols.join(",") + "\n";
+    for (const [patientId, col] of Object.entries(allTimeData)) {
+      const row = [patientId, ...cols.map((r) => col[r] ?? 0)];
+      csv += row.join(",") + "\n";
+    }
+    console.log(csv);
+    const saveDate = new Date().toISOString().split(":").join("-");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", `AVT-results-${saveDate}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="flex flex-col w-full">
+      <button
+        className=" ml-5 mr-5 mt-5"
+        onClick={() => {
+          exportCSV();
+          // console.log(allTimeData);
+        }}
+      >
+        Click to Download All Data (CSV file)
+      </button>
+      <ClinicGroup
+        clinicData={clinicData}
+        updateClinicData={updateClinicData}
+      />
+      <div className="flex flex-row flex-wrap justify-center">
+        {[
+          ...Array(12)
+            .keys()
+            .map((x) => x + 1),
+        ].map((num) => {
+          return (
+            <TimerGroup
+              key={num}
+              groupId={`Patient ${num}`}
+              updateTimeData={timeData}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default TimerManager;

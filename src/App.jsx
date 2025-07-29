@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import TimerManager from "./components/TimerGroup";
+import TimerManager from "./components/timerManager";
 
 function App() {
   const [count, setCount] = useState(0);
