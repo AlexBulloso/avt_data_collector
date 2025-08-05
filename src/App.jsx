@@ -11,7 +11,11 @@ function App() {
     <>
       <p className="text-3xl font-bold">Ambient Voice Technology Timer</p>
       <p className="text-m font-italic">
-        made by alex bulloso for use in Cambridge University Hospitals
+        made by{" "}
+        <a href="https://www.alexbulloso.com" target="_blank">
+          alex bulloso{" "}
+        </a>
+        for use in Cambridge University Hospitals
       </p>
       <TimerManager />
     </>
