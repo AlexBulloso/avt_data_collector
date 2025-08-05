@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Timer from "./timer";
+import InfoDropdown from "./infoDropdown";
 
 const TimerGroup = ({ groupId, updateTimeData }) => {
   const [running, setRunning] = useState(false);
@@ -51,7 +53,12 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
           />
           <InfoDropdown
             name={"Consult Type"}
-            dropdownOptions={["New", "Followup", "Treatment", "Diagnosis"]}
+            dropdownOptions={[
+              "New",
+              "Followup",
+              "Treatment Planning",
+              "Diagnostic Workup",
+            ]}
             updateTimeDataLocal={updateTimeDataLocal}
             value={timeDataLocal["Consult Type"] ?? ""}
           />
@@ -89,11 +96,11 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
           {[
             "Pre-clinic",
             "Contact",
-            "Letter",
             "Note",
-            "Order",
             "Conclusion",
-            "Post-clinic",
+            "Order",
+            "Letter",
+            "Miscellaneous",
             "End Consultation",
           ].map((name) => (
             <Timer
