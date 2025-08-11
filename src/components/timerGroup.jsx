@@ -30,7 +30,7 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
     updateTimeData(groupId, timeDataLocal);
   }, [groupId, updateTimeData, timeDataLocal]);
   return (
-    <div className="border p-4 m-4 flex-1">
+    <div className="border p-4 m-4 flex-1/3">
       <div className="border flex flex-row justify-center items-center margin-0">
         <h2 className="flex-1 flex justify-center items-center">{groupId}</h2>
         <h2 className="flex-1 flex justify-center items-center">
@@ -81,6 +81,34 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
             value={timeDataLocal["Complexity"] ?? ""}
           />
           <div className="mt-2.5 mb-2.5 flex flex-col items-center">
+            <label>Scheduled Clinic End Time</label>
+            <input
+              pattern="^\d{2}:\d{2}$"
+              title="Input must be in format HH:MM (24-hour)"
+              type="text"
+              onChange={(e) => {
+                updateTimeDataLocal("scheduledClinicEndTime", e.target.value);
+              }}
+              id="scheduledClinicEndTime"
+              className="resize-none w-[3rem] l-[5rem] bg-gray-50 border border-gray-300 text-gray-900"
+            ></input>
+          </div>
+
+          <div className="mt-2.5 mb-2.5 flex flex-col items-center">
+            <label>Actual Clinic End Time</label>
+            <input
+              pattern="^\d{2}:\d{2}$"
+              title="Input must be in format HH:MM (24-hour)"
+              type="text"
+              onChange={(e) => {
+                updateTimeDataLocal("actualClinicEndTime", e.target.value);
+              }}
+              id="actualClinicEndTime"
+              className="resize-none w-[3rem] l-[5rem] bg-gray-50 border border-gray-300 text-gray-900"
+            ></input>
+          </div>
+
+          <div className="mt-2.5 mb-2.5 flex flex-col items-center">
             <label>Notes</label>
             <input
               type="text"
@@ -100,7 +128,7 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
             "Conclusion",
             "Order",
             "Letter",
-            "Miscellaneous",
+            "Misc.",
             "End Consultation",
           ].map((name) => (
             <Timer

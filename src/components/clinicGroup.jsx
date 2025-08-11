@@ -73,8 +73,19 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
 
   return (
     <form className="border m-4 mb-0 flex flex-row">
+      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+        <label className="text-sm">Observer ID</label>
+        <input
+          type="text"
+          value={clinicData.obsID}
+          id="obsID"
+          onChange={(e) => updateClinicData("obsID", e.target.value)}
+          className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+        ></input>
+      </div>
+
       <div className="flex-1/5 flex flex-col p-4">
-        <label>Specialty</label>
+        <label className="text-sm">Specialty</label>
         <select
           className="justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
           value={clinicData.specialty}
@@ -98,7 +109,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
       </div>
 
       <div className="flex-1/5 flex flex-col p-4">
-        <label>Sub-specialty</label>
+        <label className="text-sm">Sub-specialty</label>
         <select
           className="justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
           value={clinicData.subspec}
@@ -119,18 +130,9 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
           })}
         </select>
       </div>
+
       <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
-        <label>Observer ID</label>
-        <input
-          type="text"
-          value={clinicData.obsID}
-          id="obsID"
-          onChange={(e) => updateClinicData("obsID", e.target.value)}
-          className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
-        ></input>
-      </div>
-      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
-        <label>Clinic Code</label>
+        <label className="text-sm">Sub-specialty Clinic Code</label>
         <input
           type="text"
           value={clinicData.clinicCode}
@@ -140,7 +142,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
         ></input>
       </div>
       <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
-        <label>Clinician ID</label>
+        <label className="text-sm">Clinician ID</label>
         <select
           value={clinicData.clinicianID}
           onChange={(e) => updateClinicData("clinicianID", e.target.value)}
@@ -157,6 +159,19 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
             );
           })}
         </select>
+      </div>
+
+      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+        <label className="text-sm"># of Clinic Patients</label>
+        <input
+          pattern="^[0-9]+$"
+          title="Input must be an integer."
+          type="text"
+          value={clinicData.numPatientsSeen}
+          id="numPatientsSeen"
+          onChange={(e) => updateClinicData("numPatientsSeen", e.target.value)}
+          className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+        ></input>
       </div>
     </form>
   );

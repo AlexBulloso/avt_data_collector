@@ -90,7 +90,7 @@ const Timer = ({
   return (
     <div className="flex flex-row m-[1rem] justify-center align-middle">
       {name != "End Consultation" ? (
-        <div className="mr-[1rem]">
+        <div className="w-[80px] ml-[0.3rem] mr-[0.7rem]">
           <h2>{name}</h2>
           <h3>{decimalised} mins</h3>
         </div>

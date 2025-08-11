@@ -12,6 +12,7 @@ const TimerManager = () => {
     obsID: "",
     clinicCode: "",
     clinicianID: "",
+    numPatientsSeen: "",
   });
 
   const updateClinicData = (name, value) => {
