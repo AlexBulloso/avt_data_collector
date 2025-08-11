@@ -6,12 +6,12 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
 
   const specialties = ["GynOnc", "GynMedOnc", "Onco", "Uro", "Haem", "Paeds"];
   const subspecs = {
-    GynOnc: [1.1, 1.2],
-    GynMedOnc: [1323.1, 123.2],
-    Onco: [1.1231, 2.1],
-    Uro: [123.1, 1.2],
-    Haem: [1.1, 13.2],
-    Paeds: [1.31, 1.2],
+    GynOnc: ["Temp A", "Temp B"],
+    GynMedOnc: ["Temp C", "Temp D"],
+    Onco: ["Temp E", "Temp F"],
+    Uro: ["Temp G", "Temp H"],
+    Haem: ["Temp I", "Temp J"],
+    Paeds: ["Temp K", "Temp L"],
   };
   const clinicianIDs = [
     "D01",
@@ -72,8 +72,8 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
   ];
 
   return (
-    <form className="border m-4 mb-0 flex flex-row">
-      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+    <form className="border m-4 mb-0 flex flex-row flex-wrap">
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm">Observer ID</label>
         <input
           type="text"
@@ -84,7 +84,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
         ></input>
       </div>
 
-      <div className="flex-1/5 flex flex-col p-4">
+      <div className="flex-1/4 flex flex-col p-4">
         <label className="text-sm">Specialty</label>
         <select
           className="justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
@@ -108,7 +108,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
         </select>
       </div>
 
-      <div className="flex-1/5 flex flex-col p-4">
+      <div className="flex-1/4 flex flex-col p-4">
         <label className="text-sm">Sub-specialty</label>
         <select
           className="justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
@@ -131,7 +131,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
         </select>
       </div>
 
-      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm">Sub-specialty Clinic Code</label>
         <input
           type="text"
@@ -141,7 +141,7 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
           className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
         ></input>
       </div>
-      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm">Clinician ID</label>
         <select
           value={clinicData.clinicianID}
@@ -161,7 +161,37 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
         </select>
       </div>
 
-      <div className="flex-1/5 flex flex-col p-4 justify-center align-middle items-center">
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
+        <label className="text-sm">Scheduled End Time</label>
+        <input
+          pattern="^\d{2}:\d{2}$"
+          title="Input must be in format HH:MM (24-hour)"
+          type="text"
+          value={clinicData.scheduledClinicEndTime}
+          id="scheduledClinicEndTime"
+          onChange={(e) =>
+            updateClinicData("scheduledClinicEndTime", e.target.value)
+          }
+          className="w-[5rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+        ></input>
+      </div>
+
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
+        <label className="text-sm">Actual End Time</label>
+        <input
+          pattern="^\d{2}:\d{2}$"
+          title="Input must be in format HH:MM (24-hour)"
+          type="text"
+          value={clinicData.actualClinicEndTime}
+          id="actualClinicEndTime"
+          onChange={(e) =>
+            updateClinicData("actualClinicEndTime", e.target.value)
+          }
+          className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+        ></input>
+      </div>
+
+      <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm"># of Clinic Patients</label>
         <input
           pattern="^[0-9]+$"

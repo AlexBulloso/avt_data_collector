@@ -80,7 +80,7 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
             updateTimeDataLocal={updateTimeDataLocal}
             value={timeDataLocal["Complexity"] ?? ""}
           />
-          <div className="mt-2.5 mb-2.5 flex flex-col items-center">
+          {/* <div className="mt-2.5 mb-2.5 flex flex-col items-center">
             <label>Scheduled Clinic End Time</label>
             <input
               pattern="^\d{2}:\d{2}$"
@@ -106,7 +106,7 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
               id="actualClinicEndTime"
               className="resize-none w-[3rem] l-[5rem] bg-gray-50 border border-gray-300 text-gray-900"
             ></input>
-          </div>
+          </div> */}
 
           <div className="mt-2.5 mb-2.5 flex flex-col items-center">
             <label>Notes</label>

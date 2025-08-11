@@ -7,11 +7,13 @@ import TimerGroup from "./timerGroup";
 const TimerManager = () => {
   const [allTimeData, setAllTimeData] = useState({});
   const [clinicData, setClinicData] = useState({
+    obsID: "",
     specialty: "",
     subspec: "",
-    obsID: "",
     clinicCode: "",
     clinicianID: "",
+    scheduledClinicEndTime: "",
+    actualClinicEndTime: "",
     numPatientsSeen: "",
   });
 
