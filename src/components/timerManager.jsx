@@ -12,8 +12,12 @@ const TimerManager = () => {
     subspec: "",
     clinicCode: "",
     clinicianID: "",
-    scheduledClinicEndTime: "",
-    actualClinicEndTime: "",
+    scheduledClinicEndTimeHr: "",
+    scheduledClinicEndTimeMin: "",
+    scheduledClinicEndTimeM: "",
+    actualClinicEndTimeHr: "",
+    actualClinicEndTimeMin: "",
+    actualClinicEndTimeM: "",
     numPatientsSeen: "",
   });
 
@@ -32,14 +36,40 @@ const TimerManager = () => {
   );
 
   const exportCSV = () => {
+    const excludeClinicEndTimes = [
+      "scheduledClinicEndTimeHr",
+      "scheduledClinicEndTimeMin",
+      "scheduledClinicEndTimeM",
+      "actualClinicEndTimeHr",
+      "actualClinicEndTimeMin",
+      "actualClinicEndTimeM",
+    ];
+
     const cols = Array.from(
       new Set(Object.values(allTimeData).flatMap((g) => Object.keys(g)))
-    );
+    ).filter((col) => !excludeClinicEndTimes.includes(col));
 
-    var csv = "Patient," + cols.join(",") + "\n";
+    var csv =
+      "Patient," +
+      cols.join(",") +
+      ",scheduledClinicEndTime,actualClinicEndTime\n";
+
     for (const [patientId, col] of Object.entries(allTimeData)) {
       const row = [patientId, ...cols.map((r) => col[r] ?? 0)];
-      csv += row.join(",") + "\n";
+      const scheduledClinicEndTime =
+        (col.scheduledClinicEndTimeHr ?? "00").toString() +
+        ":" +
+        (col.scheduledClinicEndTimeMin ?? "00").toString() +
+        (col.scheduledClinicEndTimeM ?? "");
+
+      const actualClinicEndTime =
+        (col.actualClinicEndTimeHr ?? "00").toString() +
+        ":" +
+        (col.actualClinicEndTimeMin ?? "00").toString() +
+        (col.actualClinicEndTimeM ?? "");
+
+      csv +=
+        row.join(",") + `,${scheduledClinicEndTime},${actualClinicEndTime}\n`;
     }
     console.log(csv);
     const saveDate = new Date().toISOString().split(":").join("-");

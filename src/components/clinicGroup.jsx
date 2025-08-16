@@ -163,32 +163,90 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
 
       <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm">Scheduled End Time</label>
-        <input
-          pattern="^\d{2}:\d{2}$"
-          title="Input must be in format HH:MM (24-hour)"
-          type="text"
-          value={clinicData.scheduledClinicEndTime}
-          id="scheduledClinicEndTime"
-          onChange={(e) =>
-            updateClinicData("scheduledClinicEndTime", e.target.value)
-          }
-          className="w-[5rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
-        ></input>
+        <div className="flex flex-row">
+          <input
+            type="text"
+            value={clinicData.scheduledClinicEndTimeHr}
+            id="scheduledClinicEndTimeHr"
+            onChange={(e) =>
+              updateClinicData("scheduledClinicEndTimeHr", e.target.value)
+            }
+            className="w-[1.5rem] mr-[0.4rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+          ></input>
+          {":"}
+          <input
+            type="text"
+            value={clinicData.scheduledClinicEndTimeMin}
+            id="scheduledClinicEndTimeMin"
+            onChange={(e) =>
+              updateClinicData("scheduledClinicEndTimeMin", e.target.value)
+            }
+            className="w-[1.5rem] ml-[0.4rem] mr-[0.4rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+          ></input>
+          <select
+            className="w-[3rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+            value={clinicData.scheduledClinicEndTimeM}
+            onChange={(e) => {
+              updateClinicData("scheduledClinicEndTimeM", e.target.value);
+              // setSpecialty(e.target.value);
+              // setSubSpec("");
+            }}
+          >
+            <option value="" disabled>
+              Choose
+            </option>
+            <option key={"AM"} value={"AM"}>
+              {"AM"}
+            </option>
+            <option key={"PM"} value={"PM"}>
+              {"PM"}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
         <label className="text-sm">Actual End Time</label>
-        <input
-          pattern="^\d{2}:\d{2}$"
-          title="Input must be in format HH:MM (24-hour)"
-          type="text"
-          value={clinicData.actualClinicEndTime}
-          id="actualClinicEndTime"
-          onChange={(e) =>
-            updateClinicData("actualClinicEndTime", e.target.value)
-          }
-          className="w-[6rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
-        ></input>
+        <div className="flex flex-row">
+          <input
+            type="text"
+            value={clinicData.actualClinicEndTimeHr}
+            id="actualClinicEndTimeHr"
+            onChange={(e) =>
+              updateClinicData("actualClinicEndTimeHr", e.target.value)
+            }
+            className="w-[1.5rem] mr-[0.4rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+          ></input>
+          {":"}
+          <input
+            type="text"
+            value={clinicData.actualClinicEndTimeMin}
+            id="actualClinicEndTimeMin"
+            onChange={(e) =>
+              updateClinicData("actualClinicEndTimeMin", e.target.value)
+            }
+            className="w-[1.5rem] ml-[0.4rem] mr-[0.4rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+          ></input>
+          <select
+            className="w-[3rem] justify-center align-middle items-center bg-gray-50 border border-gray-300 text-gray-900"
+            value={clinicData.actualClinicEndTimeM}
+            onChange={(e) => {
+              updateClinicData("actualClinicEndTimeM", e.target.value);
+              // setSpecialty(e.target.value);
+              // setSubSpec("");
+            }}
+          >
+            <option value="" disabled>
+              Choose
+            </option>
+            <option key={"AM"} value={"AM"}>
+              {"AM"}
+            </option>
+            <option key={"PM"} value={"PM"}>
+              {"PM"}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div className="flex-1/4 flex flex-col p-4 justify-center align-middle items-center">
