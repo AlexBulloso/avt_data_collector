@@ -75,11 +75,12 @@ const TimerGroup = ({ groupId, updateTimeData }) => {
             value={timeDataLocal["Template Use"] ?? ""}
           />
           <InfoDropdown
-            name={"Complexity"}
-            dropdownOptions={["1", "2", "3"]}
+            name={"Patient Consent"}
+            dropdownOptions={["Yes", "No"]}
             updateTimeDataLocal={updateTimeDataLocal}
-            value={timeDataLocal["Complexity"] ?? ""}
+            value={timeDataLocal["Patient Consent"] ?? ""}
           />
+
           {/* <div className="mt-2.5 mb-2.5 flex flex-col items-center">
             <label>Scheduled Clinic End Time</label>
             <input
