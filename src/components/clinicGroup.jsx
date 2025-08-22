@@ -4,9 +4,19 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
   // const [specialty, setSpecialty] = useState("GynOnc");
   // const [subspec, setSubSpec] = useState("1.1");
 
-  const specialties = ["GynaeMed", "Uro", "Haem", "Paeds"];
+  const specialties = [
+    "GynaeOnc",
+    "GynaeMedOnc",
+    "Onc",
+    "PaedsENT",
+    "Uro",
+    "Haem",
+  ];
   const subspecs = {
-    GynaeMed: ["Med Onc", "Clin Onc"],
+    GynaeOnc: ["Surgical Onc", "Others"],
+    GynaeMedOnc: ["Med Onc", "Clin Onc", "Others"],
+    Onc: ["Placeholder"],
+    PaedsENT: ["Paeds ENT", "Other"],
     Uro: ["STONE", "GEN", "CON", "PSA", "OTHERS"],
     Haem: [
       "Myeloma",
@@ -17,7 +27,6 @@ const ClinicGroup = ({ clinicData, updateClinicData }) => {
       "Haem-onc other",
       "Classical-haem other",
     ],
-    Paeds: ["Temp K", "Temp L"],
   };
   const clinicianIDs = [
     "D01",
